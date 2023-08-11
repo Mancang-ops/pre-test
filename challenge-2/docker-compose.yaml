@@ -1,0 +1,26 @@
+version: '3'
+services:
+  docker-nginx:
+    image: nginx
+    container_name: docker-nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ~/latihan/pre-test/challenge-2/default.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - pre-test-network
+    restart: unless-stopped
+
+  my-apache-app:
+    image: httpd:2.4
+    container_name: my-apache-app
+    # ports:
+    #   - "80"
+    volumes:
+      - ~/latihan/pre-test/challenge-2/html:/usr/local/apache2/htdocs/
+    networks:
+      - pre-test-network
+    restart: unless-stopped
+
+networks:
+  pre-test-network:
